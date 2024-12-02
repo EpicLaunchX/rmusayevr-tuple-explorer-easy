@@ -1,4 +1,4 @@
-from src.pytemplate.entrypoints.cli.main import display_tuple, get_items
+from src.pytemplate.entrypoints.cli.main import access_element, display_tuple, get_items
 
 
 def test_get_items(monkeypatch, capsys):
@@ -26,3 +26,24 @@ def test_display_tuple(capsys):
     # Capture and assert the printed output
     captured = capsys.readouterr()
     assert "The tuple is: ('x', 'y', 'z')" in captured.out
+
+
+def test_access_element_valid():
+    # Test access_element with a valid index
+    test_tuple = ("a", "b", "c")
+    result = access_element(test_tuple, 1)
+    assert result == "b", f"Expected 'b', but got {result}"
+
+
+def test_access_element_invalid():
+    # Test access_element with an out-of-range index
+    test_tuple = ("a", "b", "c")
+    result = access_element(test_tuple, 5)
+    assert result == "Error: Index 5 is out of range.", f"Unexpected message: {result}"
+
+
+def test_access_element_negative_index():
+    # Test access_element with a negative index
+    test_tuple = ("a", "b", "c")
+    result = access_element(test_tuple, -1)
+    assert result == "c", f"Expected 'c', but got {result}"
