@@ -15,3 +15,14 @@ def display_tuple(t):
     Takes a tuple as an argument and prints it to the console.
     """
     print("The tuple is:", t)
+
+
+def access_element(t, index):
+    """
+    Takes a tuple and an index as arguments, and tries to access the element at the given index.
+    Returns the element if the index is valid; otherwise, returns an error message.
+    """
+    try:
+        return t[index]  # Try to access the element
+    except IndexError:
+        return f"Error: Index {index} is out of range."
