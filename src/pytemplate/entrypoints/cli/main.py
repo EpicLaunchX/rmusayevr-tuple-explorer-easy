@@ -26,3 +26,16 @@ def access_element(t, index):
         return t[index]  # Try to access the element
     except IndexError:
         return f"Error: Index {index} is out of range."
+
+
+def slice_tuple(t, start, end):
+    """
+    Takes a tuple and two indices (start, end) as arguments and returns the sliced portion.
+    If indices are out of range, returns an appropriate message.
+    """
+    try:
+        if start < 0 or end > len(t):
+            raise IndexError
+        return t[start:end]  # Slice the tuple
+    except IndexError:
+        return f"Error: Indices [{start}:{end}] are out of range for a tuple of length {len(t)}."

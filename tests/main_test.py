@@ -1,4 +1,4 @@
-from src.pytemplate.entrypoints.cli.main import access_element, display_tuple, get_items
+from src.pytemplate.entrypoints.cli.main import access_element, display_tuple, get_items, slice_tuple
 
 
 def test_get_items(monkeypatch, capsys):
@@ -47,3 +47,19 @@ def test_access_element_negative_index():
     test_tuple = ("a", "b", "c")
     result = access_element(test_tuple, -1)
     assert result == "c", f"Expected 'c', but got {result}"
+
+
+def test_slice_tuple_out_of_range():
+    # Test slice_tuple with out-of-range indices
+    test_tuple = ("a", "b", "c")
+    result = slice_tuple(test_tuple, 0, 10)
+    expected = "Error: Indices [0:10] are out of range for a tuple of length 3."
+    assert result == expected, f"Unexpected message: {result}"
+
+
+def test_slice_tuple_negative_index():
+    # Test slice_tuple with valid negative indices
+    test_tuple = ("a", "b", "c", "d")
+    result = slice_tuple(test_tuple, 1, 3)
+    expected = ("b", "c")
+    assert result == expected, f"Expected {expected}, but got {result}"
